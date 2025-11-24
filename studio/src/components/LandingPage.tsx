@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ShaderAnimation } from '@/components/shader-animation';
+import { Typewriter } from '@/components/ui/typewriter';
 
 interface LandingPageProps {
   onStartDesigning: () => void;
@@ -24,9 +25,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
           <h1 className="text-6xl font-semibold tracking-tight text-white drop-shadow-lg">
             aurion
           </h1>
-          <p className="text-base md:text-lg text-gray-100/80 tracking-[0.25em] uppercase drop-shadow-md">
-            Plus besoin de builder des workflows, un seul prompt suffit
-          </p>
+          <Typewriter
+            text={[
+              'Plus besoin de builder des workflows, un seul prompt suffit',
+              'Décris ton idée, on s’occupe du reste',
+            ]}
+            loop
+            speed={80}
+            deleteSpeed={40}
+            delay={1600}
+            className="block text-base md:text-lg text-gray-100/80 tracking-[0.25em] uppercase drop-shadow-md"
+          />
         </div>
 
         {/* Prompt Card */}
