@@ -18,6 +18,10 @@ export interface SimpleWorkflowRequest {
   agents_config?: Record<string, any>;
 }
 
+export interface StudioAIWorkflowRequest {
+  prompt: string;
+}
+
 export interface APIResponse<T = any> {
   status: 'success' | 'error';
   data?: T;
@@ -84,6 +88,14 @@ class FloAIAPI {
   // Workflow YAML
   async runYamlWorkflow(request: WorkflowRequest) {
     return this.request('/workflow/yaml', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+  }
+
+  // Generate workflow YAML from natural language prompt
+  async generateStudioWorkflow(request: StudioAIWorkflowRequest) {
+    return this.request('/studio/ai-workflow', {
       method: 'POST',
       body: JSON.stringify(request),
     });

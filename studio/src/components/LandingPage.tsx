@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { ShaderAnimation } from '@/components/shader-animation';
 import { Typewriter } from '@/components/ui/typewriter';
 import { Link2, CornerDownLeft } from 'lucide-react';
+import floAIAPI from '@/lib/api';
+import { useDesignerStore } from '@/store/designerStore';
 
 interface LandingPageProps {
   onStartDesigning: () => void;
@@ -12,10 +14,33 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
   const [prompt, setPrompt] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const importFromYAML = useDesignerStore((state) => state.importFromYAML);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onStartDesigning();
+    if (!prompt.trim()) return;
+
+    const run = async () => {
+      try {
+        setIsLoading(true);
+        const response = await floAIAPI.generateStudioWorkflow({ prompt });
+
+        if (response.status === 'success' && (response.data as any)?.yaml) {
+          const yamlContent = (response.data as any).yaml as string;
+          await importFromYAML(yamlContent);
+          onStartDesigning();
+        } else {
+          console.error('Failed to generate workflow from AI:', response.error || response.data);
+        }
+      } catch (error) {
+        console.error('AI workflow generation failed:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    void run();
   };
 
   const handleFileClick = () => {
@@ -82,7 +107,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
             <Button
               type="submit"
               size="icon"
-              className="h-9 w-9 rounded-full bg-neutral-200 text-neutral-900 hover:bg-white shrink-0"
+              disabled={isLoading}
+              className="h-9 w-9 rounded-full bg-neutral-200 text-neutral-900 hover:bg-white shrink-0 disabled:opacity-60 disabled:hover:bg-neutral-200"
             >
               <CornerDownLeft className="w-4 h-4" />
             </Button>

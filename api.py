@@ -46,6 +46,9 @@ class SimpleWorkflowRequest(BaseModel):
     task: str
     agents_config: Optional[Dict[str, Any]] = None
 
+class StudioAIWorkflowRequest(BaseModel):
+    prompt: str
+
 @app.get("/")
 async def root():
     """Health check endpoint"""
@@ -101,6 +104,78 @@ async def chat_with_agent(request: AgentRequest):
         response = await agent.run(request.prompt)
         return {"response": response, "status": "success"}
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/studio/ai-workflow")
+async def generate_studio_workflow(request: StudioAIWorkflowRequest):
+    """
+    Generate an Aurora YAML workflow from a natural language description.
+
+    This uses the configured LLM (OpenAI-compatible, e.g. OpenAI or DeepSeek)
+    with the API key provided in environment variables.
+    """
+    try:
+        # Try OpenAI-style key first, then optional DeepSeek-specific key
+        api_key = os.getenv("OPENAI_API_KEY") or os.getenv("DEEPSEEK_API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=400, detail="LLM API key not configured")
+
+        # Use OpenAI wrapper – works with OpenAI-compatible providers (DeepSeek, etc.)
+        llm = OpenAI(model="gpt-4o-mini", api_key=api_key, temperature=0.2)
+
+        system_prompt = """
+You are an expert AI workflow architect for Aurora AI Studio.
+Given a natural language description of an automation or multi‑agent workflow,
+you MUST respond with a VALID YAML document in the following schema, and nothing else:
+
+metadata:
+  name: "short-workflow-name"
+  version: "1.0.0"
+  description: "One sentence description of the workflow"
+
+arium:
+  agents:
+    - id: "agent_id_1"
+      name: "Human friendly name"
+      job: "Clear description of what this agent does"
+      model:
+        provider: "openai"
+        name: "gpt-4o-mini"
+
+  workflow:
+    start: "agent_id_1"
+    edges:
+      - from: "agent_id_1"
+        to: ["agent_id_2"]
+      - from: "agent_id_2"
+        to: ["agent_id_3"]
+    end: ["agent_id_3"]
+
+Rules:
+- Use only fields shown in the schema above.
+- Use simple lowercase ids without spaces.
+- Make sure every `from` and `to` id exists in `agents`.
+- Do NOT wrap the YAML in markdown fences. Return ONLY raw YAML.
+"""
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": request.prompt},
+        ]
+
+        yaml_workflow = await llm.generate(messages)  # type: ignore[arg-type]
+
+        # Ensure it's a plain string
+        if isinstance(yaml_workflow, dict):
+            yaml_text = json.dumps(yaml_workflow)
+        else:
+            yaml_text = str(yaml_workflow)
+
+        return {"status": "success", "yaml": yaml_text}
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
