@@ -116,13 +116,25 @@ async def generate_studio_workflow(request: StudioAIWorkflowRequest):
     with the API key provided in environment variables.
     """
     try:
-        # Try OpenAI-style key first, then optional DeepSeek-specific key
-        api_key = os.getenv("OPENAI_API_KEY") or os.getenv("DEEPSEEK_API_KEY")
-        if not api_key:
-            raise HTTPException(status_code=400, detail="LLM API key not configured")
+        # Prefer DeepSeek if configured, otherwise fall back to OpenAI
+        deepseek_key = os.getenv("DEEPSEEK_API_KEY")
+        openai_key = os.getenv("OPENAI_API_KEY")
 
-        # Use OpenAI wrapper – works with OpenAI-compatible providers (DeepSeek, etc.)
-        llm = OpenAI(model="gpt-4o-mini", api_key=api_key, temperature=0.2)
+        if deepseek_key:
+            # DeepSeek is OpenAI-compatible but uses its own base URL and model name
+            llm = OpenAI(
+                model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+                api_key=deepseek_key,
+                temperature=0.2,
+                base_url=os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+            )
+        elif openai_key:
+            llm = OpenAI(model="gpt-4o-mini", api_key=openai_key, temperature=0.2)
+        else:
+            raise HTTPException(
+                status_code=400,
+                detail="No LLM API key configured (set DEEPSEEK_API_KEY or OPENAI_API_KEY)",
+            )
 
         system_prompt = """
 You are an expert AI workflow architect for Aurora AI Studio.
