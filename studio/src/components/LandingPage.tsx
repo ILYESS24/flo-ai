@@ -40,7 +40,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
 
         {/* Prompt Bar (like screenshot) */}
         <form onSubmit={handleSubmit} className="w-full max-w-3xl">
-          <div className="flex items-center gap-4 rounded-3xl bg-neutral-900/95 border border-neutral-800 px-6 py-4 shadow-2xl">
+          <div className="flex items-center gap-4 rounded-3xl bg-neutral-900 border border-neutral-800 px-6 py-3">
             {/* Left icons */}
             <div className="flex items-center gap-4 text-neutral-400">
               <Link2 className="w-4 h-4" />
@@ -50,10 +50,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
             {/* Prompt input */}
             <input
               type="text"
-              placeholder="Décris ton application ou ton workflow…"
+              placeholder=""
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              className="flex-1 bg-transparent border-0 outline-none text-base text-neutral-100 placeholder:text-neutral-500"
+              className="flex-1 bg-transparent border-0 outline-none text-base text-neutral-100"
             />
 
             {/* Send button */}
