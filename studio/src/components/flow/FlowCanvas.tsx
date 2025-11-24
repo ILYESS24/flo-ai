@@ -8,6 +8,7 @@ import ReactFlow, {
   Connection,
   NodeTypes,
   EdgeTypes,
+  ConnectionLineType,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -67,11 +68,11 @@ const FlowCanvas: React.FC = () => {
     onConnect(connection);
   }, [setLocalEdges, onConnect]);
 
-  const handleNodeClick = useCallback((event: React.MouseEvent, node: any) => {
+  const handleNodeClick = useCallback((_event: React.MouseEvent, node: any) => {
     setSelectedNode(node);
   }, [setSelectedNode]);
 
-  const handleEdgeClick = useCallback((event: React.MouseEvent, edge: any) => {
+  const handleEdgeClick = useCallback((_event: React.MouseEvent, edge: any) => {
     setSelectedEdge(edge);
   }, [setSelectedEdge]);
 
@@ -111,7 +112,7 @@ const FlowCanvas: React.FC = () => {
         onPaneClick={handlePaneClick}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        connectionLineType="bezier"
+        connectionLineType={ConnectionLineType.Bezier}
         fitView
         proOptions={proOptions}
         className="bg-gray-50"

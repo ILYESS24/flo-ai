@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Download, Copy, Eye, EyeOff } from 'lucide-react';
+import { ChevronRight, Download, Copy, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDesignerStore } from '@/store/designerStore';
 import { generateAriumYAML, downloadYAML } from '@/utils/yamlExport';

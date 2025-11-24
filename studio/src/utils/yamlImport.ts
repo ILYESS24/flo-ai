@@ -48,33 +48,8 @@ export function parseAriumYAML(yamlContent: string): ImportResult {
       });
     }
 
-    // Create router nodes if routers are defined
-    if (workflow.arium.routers) {
-      workflow.arium.routers.forEach((router: any, index: number) => {
-        const routerNode: CustomNode = {
-          id: router.name,
-          type: 'router',
-          position: { 
-            x: 150 + (index % 3) * 300, 
-            y: 300 + Math.floor(index / 3) * 200 
-          },
-          data: {
-            router: {
-              id: router.name,
-              name: router.name,
-              description: router.description || '',
-              type: router.type || 'smart',
-              model: router.model,
-              settings: router.settings,
-              routing_options: router.routing_options,
-              task_categories: router.task_categories,
-              flow_pattern: router.flow_pattern,
-            } as Router,
-          },
-        };
-        nodes.push(routerNode);
-      });
-    }
+    // TODO: Add router support when the type definition includes routers
+    // Currently routers are not defined in AriumWorkflow type
 
     // Create tool nodes if tools are defined
     if (workflow.arium.tools) {

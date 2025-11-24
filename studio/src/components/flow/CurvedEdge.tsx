@@ -14,10 +14,9 @@ const CurvedEdge: React.FC<EdgeProps<CustomEdgeData>> = ({
   targetY,
   sourcePosition,
   targetPosition,
-  data,
   selected,
 }) => {
-  const [edgePath, labelX, labelY] = getBezierPath({
+  const [edgePath] = getBezierPath({
     sourceX,
     sourceY,
     sourcePosition,
