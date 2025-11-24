@@ -1,4 +1,4 @@
-// API client pour Flo AI Studio
+// API client pour Aurora AI Studio
 import { config } from './config';
 
 export interface AgentRequest {

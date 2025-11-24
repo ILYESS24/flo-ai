@@ -375,7 +375,7 @@ const Sidebar: React.FC = () => {
         <div>
           <h3 className="font-medium text-sm text-gray-700 mb-3">Quick Start</h3>
           <div className="text-sm text-gray-600 mb-4">
-            Welcome to Flo AI Studio! Create agents and connect them to build powerful AI workflows.
+            Welcome to Aurora AI Studio! Create agents and connect them to build powerful AI workflows.
           </div>
           <div className="grid grid-cols-2 gap-2 mb-4">
             <Button

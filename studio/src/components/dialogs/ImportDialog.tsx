@@ -176,7 +176,7 @@ const ImportDialog: React.FC<ImportDialogProps> = ({ isOpen, onClose }) => {
           <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
             <h4 className="font-medium text-sm text-blue-800 mb-2">Import Instructions</h4>
             <ul className="text-sm text-blue-700 space-y-1">
-              <li>• Upload a YAML file exported from Flo AI Studio or created manually</li>
+              <li>• Upload a YAML file exported from Aurora AI Studio or created manually</li>
               <li>• The YAML must include an "arium" section with agents and workflow definition</li>
               <li>• Importing will replace your current workflow - export first if needed</li>
               <li>• Router configurations and tool references will be preserved</li>

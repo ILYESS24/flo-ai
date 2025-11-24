@@ -303,7 +303,7 @@ export function generateAriumYAML(data: ExportData): string {
     metadata: {
       name: workflowName || 'Flo AI Workflow',
       version: workflowVersion || '1.0.0',
-      description: workflowDescription || 'Generated with Flo AI Studio',
+      description: workflowDescription || 'Generated with Aurora AI Studio',
       tags: ['flo-ai', 'studio-generated'],
     },
     arium: {

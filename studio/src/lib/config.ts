@@ -1,4 +1,4 @@
-// Configuration pour Flo AI Studio
+// Configuration pour Aurora AI Studio
 export const config = {
   // URL de l'API backend
   API_BASE_URL: process.env.VITE_API_URL || process.env.API_URL || 'http://localhost:8000',
