@@ -32,6 +32,7 @@ interface DesignerState {
   setConfig: (config: DesignerConfig) => void;
   
   // Node actions
+  addNode: (node: CustomNode) => void;
   addAgent: (agent: Agent, position: { x: number; y: number }) => void;
   addTool: (tool: Tool, position: { x: number; y: number }) => void;
   addRouter: (router: Router, position: { x: number; y: number }) => void;
@@ -162,6 +163,12 @@ export const useDesignerStore = create<DesignerState>((set) => ({
   setConfig: (config) => set({ config }),
 
   // Node actions
+  addNode: (node) => {
+    set((state) => ({
+      nodes: [...state.nodes, node],
+    }));
+  },
+
   addAgent: (agent, position) => {
     const newNode: CustomNode = {
       id: agent.id,
