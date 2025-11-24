@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, FolderOpen, Import } from 'lucide-react';
 
 interface LandingPageProps {
   onStartDesigning: () => void;
@@ -17,12 +16,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
     "Make a coding assistant team with a planner, developer, and tester for software development"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (prompt.trim()) {
-      onStartDesigning();
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white">
