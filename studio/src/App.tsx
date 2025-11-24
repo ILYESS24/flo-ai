@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import { useDesignerStore } from '@/store/designerStore';
 import { Button } from '@/components/ui/button';
 import { Plus, Settings, Route, Upload, CheckCircle } from 'lucide-react';
-import AuroraCanvas from '@/components/aurora/AuroraCanvas';
+import AuroraCanvas from '@/components/aurora/auroraCanvas';
 import Sidebar from '@/components/sidebar/Sidebar';
 import AgentEditor from '@/components/editors/AgentEditor';
 import RouterEditor from '@/components/editors/RouterEditor';
