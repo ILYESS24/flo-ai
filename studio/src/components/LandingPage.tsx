@@ -32,13 +32,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       <ShaderAnimation />
-      <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center space-y-12 px-4 py-20">
+      <div className="relative z-10 w-full max-w-4xl mx-auto min-h-screen flex flex-col items-center justify-center space-y-12 px-4">
         {/* Logo + Tagline */}
         <div className="text-center space-y-4">
           <Typewriter
             text={[
-              'Plus besoin de builder des workflows, un seul prompt suffit',
-              'Décris ton idée, on s’occupe du reste',
+              'Stop building complex workflows, one prompt is enough',
+              'Describe what you want, we build it for you',
             ]}
             loop
             speed={80}
