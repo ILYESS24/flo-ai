@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, ArrowRight, Zap, Bot, Workflow } from 'lucide-react';
+import { Sparkles, ArrowRight, Bot, Plus, FolderOpen, Settings, Import, Cpu } from 'lucide-react';
 import { useDesignerStore } from '@/store/designerStore';
 
 interface LandingPageProps {
@@ -158,100 +157,145 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center space-x-3">
-            <Sparkles className="w-12 h-12 text-indigo-600" />
-            <h1 className="text-4xl font-bold text-gray-900">Aurora AI Studio</h1>
+    <div className="min-h-screen bg-white">
+      {/* Navigation Header - Inspired by Orchids */}
+      <nav className="border-b border-gray-200 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-3">
+              <Sparkles className="w-8 h-8 text-indigo-600" />
+              <h1 className="text-xl font-bold text-gray-900">Aurora AI</h1>
+            </div>
+            <div className="hidden md:flex items-center space-x-6">
+              <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Tools
+              </button>
+              <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Import
+              </button>
+              <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Auto
+              </button>
+            </div>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Describe your AI workflow in natural language, and we'll create it for you instantly.
+          <div className="flex items-center space-x-4">
+            <Button variant="outline" size="sm">
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </Button>
+            <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
+              <Plus className="w-4 h-4 mr-2" />
+              New Project
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+            The AI Agent Builder
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Build AI agents and workflows with natural language
           </p>
         </div>
 
-        {/* Main Input Card */}
-        <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="text-center pb-6">
-            <CardTitle className="text-2xl flex items-center justify-center space-x-2">
-              <Zap className="w-6 h-6 text-indigo-600" />
-              <span>What would you like to build?</span>
-            </CardTitle>
-            <CardDescription className="text-lg">
-              Describe your AI agents and workflow, and we'll generate them automatically
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Main Prompt Input */}
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 mb-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              What would you like to build?
+            </h2>
+            <p className="text-gray-600">
+              Describe your AI workflow and we'll create it for you
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="relative">
               <Textarea
                 placeholder="e.g., Create a customer support team that handles inquiries, processes orders, and manages complaints..."
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                className="min-h-32 text-lg resize-none border-2 border-indigo-200 focus:border-indigo-500 rounded-xl"
+                className="min-h-24 text-base resize-none border-2 border-gray-300 focus:border-indigo-500 rounded-xl bg-white shadow-sm"
                 disabled={isGenerating}
               />
-
-              <div className="flex justify-center">
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={!prompt.trim() || isGenerating}
-                  className="px-8 py-3 text-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
-                >
-                  {isGenerating ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-                      <span>Creating your workflow...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-2">
-                      <Sparkles className="w-5 h-5" />
-                      <span>Generate Workflow</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
-                  )}
-                </Button>
-              </div>
-            </form>
-
-            {/* Example Prompts */}
-            <div className="border-t pt-6">
-              <p className="text-sm text-gray-600 mb-4 text-center">Try these examples:</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {examplePrompts.map((example, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setPrompt(example)}
-                    className="text-left p-3 bg-gray-50 hover:bg-indigo-50 border border-gray-200 hover:border-indigo-300 rounded-lg transition-colors text-sm"
-                    disabled={isGenerating}
-                  >
-                    {example}
-                  </button>
-                ))}
-              </div>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Features Preview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-            <Bot className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">AI Agents</h3>
-            <p className="text-sm text-gray-600">Create specialized agents with different roles and capabilities</p>
+            <div className="flex justify-center">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={!prompt.trim() || isGenerating}
+                className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                {isGenerating ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                    <span>Building your agents...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Cpu className="w-5 h-5" />
+                    <span>Build Agents</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                )}
+              </Button>
+            </div>
+          </form>
+        </div>
+
+        {/* Examples Section */}
+        <div className="mb-12">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Try these examples</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {examplePrompts.map((example, index) => (
+              <button
+                key={index}
+                onClick={() => setPrompt(example)}
+                className="text-left p-4 bg-white border border-gray-200 hover:border-indigo-300 rounded-lg transition-all duration-200 hover:shadow-md"
+                disabled={isGenerating}
+              >
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-sm text-gray-700">{example}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* My Projects Section - Inspired by Orchids */}
+        <div className="border-t border-gray-200 pt-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-gray-900">My Projects</h3>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" size="sm">
+                <FolderOpen className="w-4 h-4 mr-2" />
+                Import
+              </Button>
+              <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
+                <Plus className="w-4 h-4 mr-2" />
+                New Project
+              </Button>
+            </div>
           </div>
 
-          <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-            <Workflow className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">Visual Workflows</h3>
-            <p className="text-sm text-gray-600">Design and connect your agents in an intuitive drag-and-drop interface</p>
-          </div>
-
-          <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-            <Sparkles className="w-8 h-8 text-pink-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">Auto-Generation</h3>
-            <p className="text-sm text-gray-600">Describe what you need in natural language and watch it come to life</p>
+          {/* Empty State */}
+          <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded-xl">
+            <Bot className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <h4 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h4>
+            <p className="text-gray-600 mb-4">
+              Start building your first AI workflow above, or import an existing one
+            </p>
+            <Button variant="outline">
+              <Import className="w-4 h-4 mr-2" />
+              Import Project
+            </Button>
           </div>
         </div>
       </div>
