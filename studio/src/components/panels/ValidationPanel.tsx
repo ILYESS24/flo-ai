@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AlertCircle, AlertTriangle, Info, CheckCircle, ChevronDown, ChevronRight } from 'lucide-react';
 import { useDesignerStore } from '@/store/designerStore';
-import { validateWorkflow, ValidationResult, ValidationIssue, getValidationSummary } from '@/utils/workflowValidation';
+import { validateWorkflow, ValidationResult, ValidationIssue, getValidationSummary } from '@/utils/workauroraValidation';
 import { cn } from '@/lib/utils';
 
 const ValidationPanel: React.FC = () => {
@@ -176,9 +176,9 @@ const ValidationPanel: React.FC = () => {
             <div className="space-y-1">
               {['structure', 'configuration', 'connectivity', 'best_practice'].map(category => {
                 const categoryIssues = [
-                  ...issues.filter(i => i.category === category),
-                  ...warnings.filter(w => w.category === category),
-                  ...suggestions.filter(s => s.category === category),
+                  ...issues.filter((i: ValidationIssue) => i.category === category),
+                  ...warnings.filter((w: ValidationIssue) => w.category === category),
+                  ...suggestions.filter((s: ValidationIssue) => s.category === category),
                 ];
                 
                 if (categoryIssues.length === 0) return null;

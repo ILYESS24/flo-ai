@@ -29,7 +29,7 @@ const edgeTypes: EdgeTypes = {
   custom: CustomEdge,
 };
 
-const FlowCanvas: React.FC = () => {
+const AuroraCanvas: React.FC = () => {
   const {
     nodes,
     edges,
@@ -124,4 +124,4 @@ const FlowCanvas: React.FC = () => {
   );
 };
 
-export default FlowCanvas;
+export default AuroraCanvas;

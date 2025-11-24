@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import { useDesignerStore } from '@/store/designerStore';
 import { Button } from '@/components/ui/button';
 import { Plus, Settings, Route, Upload, CheckCircle } from 'lucide-react';
-import FlowCanvas from '@/components/flow/FlowCanvas';
+import AuroraCanvas from '@/components/aurora/AuroraCanvas';
 import Sidebar from '@/components/sidebar/Sidebar';
 import AgentEditor from '@/components/editors/AgentEditor';
 import RouterEditor from '@/components/editors/RouterEditor';
@@ -90,7 +90,7 @@ function App() {
         <Sidebar />
         <div className="flex-1 relative">
           <ReactFlowProvider>
-            <FlowCanvas />
+            <AuroraCanvas />
           </ReactFlowProvider>
         </div>
         {showValidation && <ValidationPanel />}
