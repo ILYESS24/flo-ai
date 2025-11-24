@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { ShaderAnimation } from '@/components/shader-animation';
 
 interface LandingPageProps {
   onStartDesigning: () => void;
@@ -15,8 +16,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4">
-      <div className="w-full max-w-4xl flex flex-col items-center space-y-10">
+    <div className="relative min-h-screen w-full overflow-hidden">
+      <ShaderAnimation />
+      <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center space-y-10 px-4 py-16">
         {/* Logo + Tagline */}
         <div className="text-center space-y-3">
           <h1 className="text-5xl font-semibold tracking-tight text-gray-900">
