@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { ShaderAnimation } from '@/components/shader-animation';
 import { Typewriter } from '@/components/ui/typewriter';
+import { Link2, Mic, CornerDownLeft } from 'lucide-react';
 
 interface LandingPageProps {
   onStartDesigning: () => void;
@@ -38,27 +38,34 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
           />
         </div>
 
-        {/* Prompt Card */}
-        <div className="w-full rounded-3xl border border-white/20 bg-white/10 shadow-xl backdrop-blur-xl px-6 py-6 sm:px-8 sm:py-7">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <Textarea
-              placeholder="Créez votre application en quelques secondes..."
+        {/* Prompt Bar (like screenshot) */}
+        <form onSubmit={handleSubmit} className="w-full max-w-3xl">
+          <div className="flex items-center gap-4 rounded-3xl bg-neutral-900/95 border border-neutral-800 px-6 py-4 shadow-2xl">
+            {/* Left icons */}
+            <div className="flex items-center gap-4 text-neutral-400">
+              <Link2 className="w-4 h-4" />
+              <Mic className="w-4 h-4" />
+            </div>
+
+            {/* Prompt input */}
+            <input
+              type="text"
+              placeholder="Décris ton application ou ton workflow…"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              className="min-h-[100px] text-lg text-white placeholder:text-gray-300 resize-none border border-white/20 bg-white/10 rounded-2xl shadow-inner focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none"
+              className="flex-1 bg-transparent border-0 outline-none text-base text-neutral-100 placeholder:text-neutral-500"
             />
 
-            <div className="flex justify-center pt-2">
-              <Button
-                type="submit"
-                size="lg"
-                className="rounded-full bg-white/90 px-8 text-base font-semibold text-gray-900 hover:bg-white"
-              >
-                Générer
-              </Button>
-            </div>
-          </form>
-        </div>
+            {/* Send button */}
+            <Button
+              type="submit"
+              size="icon"
+              className="h-9 w-9 rounded-full bg-neutral-200 text-neutral-900 hover:bg-white shrink-0"
+            >
+              <CornerDownLeft className="w-4 h-4" />
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );
