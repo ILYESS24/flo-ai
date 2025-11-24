@@ -1,5 +1,5 @@
 import { load } from 'js-yaml';
-import { Agent, Router, AriumWorkflow } from '@/types/agent';
+import { Agent, AriumWorkflow } from '@/types/agent';
 import { CustomNode, CustomEdge } from '@/types/reactflow';
 
 export interface ImportResult {
