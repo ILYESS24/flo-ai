@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 
-interface LandingPageProps {
-  onStartDesigning: () => void;
-}
-
-const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
+const LandingPage: React.FC = () => {
   const [prompt, setPrompt] = useState('');
 
   const examplePrompts = [

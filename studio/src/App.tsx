@@ -98,7 +98,7 @@ function App() {
   if (showLandingPage) {
     return (
       <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-        <LandingPage onStartDesigning={handleStartDesigning} />
+        <LandingPage />
       </div>
     );
   }
