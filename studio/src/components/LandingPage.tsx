@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 
-const LandingPage: React.FC = () => {
+interface LandingPageProps {
+  onStartDesigning: () => void;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
   const [prompt, setPrompt] = useState('');
 
   const examplePrompts = [
@@ -11,6 +15,11 @@ const LandingPage: React.FC = () => {
     "Design a data analysis workflow with agents for data cleaning, analysis, and report generation",
     "Make a coding assistant team with a planner, developer, and tester for software development"
   ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onStartDesigning();
+  };
 
 
   return (
@@ -54,12 +63,19 @@ const LandingPage: React.FC = () => {
 
         {/* Prompt Input */}
         <div className="mb-8">
-          <Textarea
-            placeholder="Describe your AI workflow..."
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            className="min-h-24 text-base resize-none border border-gray-300 focus:border-indigo-500 rounded-lg bg-white"
-          />
+          <form onSubmit={handleSubmit}>
+            <Textarea
+              placeholder="Describe your AI workflow..."
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="min-h-24 text-base resize-none border border-gray-300 focus:border-indigo-500 rounded-lg bg-white mb-4"
+            />
+            <div className="flex justify-center">
+              <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700">
+                Start Designing
+              </Button>
+            </div>
+          </form>
         </div>
 
         {/* Examples */}

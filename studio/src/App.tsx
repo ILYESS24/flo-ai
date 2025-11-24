@@ -11,6 +11,7 @@ import EdgeEditor from '@/components/editors/EdgeEditor';
 import YamlPreviewDrawer from '@/components/drawer/YamlPreviewDrawer';
 import ImportDialog from '@/components/dialogs/ImportDialog';
 import ValidationPanel from '@/components/panels/ValidationPanel';
+import LandingPage from '@/components/LandingPage';
 import './App.css';
 
 // Simplified Config Editor Modal
@@ -82,6 +83,15 @@ const ToolbarComponent: React.FC<{
 
 function App() {
   const [showValidation, setShowValidation] = useState(true);
+  const [showLandingPage, setShowLandingPage] = useState(true);
+
+  const handleStartDesigning = () => {
+    setShowLandingPage(false);
+  };
+
+  if (showLandingPage) {
+    return <LandingPage onStartDesigning={handleStartDesigning} />;
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gray-100">
