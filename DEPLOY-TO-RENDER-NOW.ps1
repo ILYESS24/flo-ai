@@ -40,11 +40,11 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# 3. API Python
+# 3. API Python (avec Docker)
 Write-Host ""
-Write-Host "🐍 Déploiement API Python..." -ForegroundColor Yellow
+Write-Host "🐳 Déploiement API Python (Docker)..." -ForegroundColor Yellow
 $api_cmd = @"
-render web create flo-ai-api --repo https://github.com/ILYESS24/flo-ai --runtime python3 --build-command "pip install -r flo_ai/requirements.txt" --start-command "cd flo_ai && python api.py" --env-vars "PYTHON_VERSION=3.11,OPENAI_API_KEY=$openai_key" --plan starter
+render web create flo-ai-api --repo https://github.com/ILYESS24/flo-ai --env-vars "OPENAI_API_KEY=$openai_key" --plan starter
 "@
 Invoke-Expression $api_cmd
 if ($LASTEXITCODE -ne 0) {
