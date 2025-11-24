@@ -23,7 +23,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
             aurion
           </h1>
           <p className="text-sm text-gray-500 tracking-[0.25em] uppercase">
-            Générez du code professionnel
+            Plus besoin de builder des workflows, un seul prompt suffit
           </p>
         </div>
 
@@ -37,42 +37,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
               className="min-h-[80px] text-base resize-none border-0 bg-white rounded-2xl shadow-inner focus-visible:ring-0 focus-visible:outline-none"
             />
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-gray-300 px-4"
-                >
-                  Tools
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-gray-300 px-4"
-                >
-                  Import
-                </Button>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-end">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm text-gray-700"
-                >
-                  <span className="inline-flex h-2 w-2 rounded-full bg-blue-500" />
-                  DeepSeek V3
-                </button>
-                <Button
-                  type="submit"
-                  size="sm"
-                  className="rounded-full bg-black px-5 text-sm font-medium text-white hover:bg-gray-900"
-                >
-                  Générer
-                </Button>
-              </div>
+            <div className="flex justify-center pt-1">
+              <Button
+                type="submit"
+                size="sm"
+                className="rounded-full bg-black px-6 text-sm font-medium text-white hover:bg-gray-900"
+              >
+                Générer
+              </Button>
             </div>
           </form>
         </div>
