@@ -11,7 +11,6 @@ import EdgeEditor from '@/components/editors/EdgeEditor';
 import YamlPreviewDrawer from '@/components/drawer/YamlPreviewDrawer';
 import ImportDialog from '@/components/dialogs/ImportDialog';
 import ValidationPanel from '@/components/panels/ValidationPanel';
-import LandingPage from '@/components/LandingPage';
 import './App.css';
 
 // Simplified Config Editor Modal
@@ -83,28 +82,9 @@ const ToolbarComponent: React.FC<{
 
 function App() {
   const [showValidation, setShowValidation] = useState(true);
-  const [showLandingPage, setShowLandingPage] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const handleStartDesigning = () => {
-    setIsTransitioning(true);
-    // Animation de transition
-    setTimeout(() => {
-      setShowLandingPage(false);
-      setIsTransitioning(false);
-    }, 500);
-  };
-
-  if (showLandingPage) {
-    return (
-      <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-        <LandingPage />
-      </div>
-    );
-  }
 
   return (
-    <div className={`h-screen flex flex-col bg-gray-100 transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+    <div className="h-screen flex flex-col bg-gray-100">
       <ToolbarComponent showValidation={showValidation} setShowValidation={setShowValidation} />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar />
