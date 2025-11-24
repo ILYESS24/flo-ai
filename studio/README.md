@@ -163,7 +163,7 @@ metadata:
   description: "Generated with Flo AI Studio"
   tags: ["flo-ai", "studio-generated"]
 
-arium:
+aurora:
   agents:
     - name: "content_analyzer"
       role: "Content Analyst"
@@ -188,10 +188,10 @@ arium:
 Use the exported YAML with the Flo AI framework:
 
 ```python
-from flo_ai.arium.builder import AriumBuilder
+from aurora_ai.aurora.builder import auroraBuilder
 
 # Load your exported workflow
-builder = AriumBuilder.from_yaml(yaml_file="my-workflow.yaml")
+builder = auroraBuilder.from_yaml(yaml_file="my-workflow.yaml")
 
 # Run the workflow
 result = await builder.build_and_run(["Your input here"])
@@ -342,7 +342,7 @@ This project is part of the Flo AI framework and follows the same licensing term
 
 ## 🙏 Acknowledgments
 
-- Built for the [Flo AI framework](../flo_ai/)
+- Built for the [Flo AI framework](../aurora_ai/)
 - Powered by React Flow for graph visualization
 - UI components from Radix UI
 - Icons from Lucide React
@@ -351,4 +351,4 @@ This project is part of the Flo AI framework and follows the same licensing term
 
 **Happy Building! 🚀**
 
-For more information about the Flo AI framework, check out the [main documentation](../flo_ai/README.md).
+For more information about the Flo AI framework, check out the [main documentation](../aurora_ai/README.md).

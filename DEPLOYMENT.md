@@ -37,8 +37,8 @@ Ce guide explique comment déployer complètement Flo AI sur Render avec tous se
 3. Configurez :
    - **Name** : `flo-ai-api`
    - **Runtime** : Python 3
-   - **Build Command** : `pip install -r flo_ai/requirements.txt`
-   - **Start Command** : `cd flo_ai && python api.py`
+   - **Build Command** : `pip install -r aurora_ai/requirements.txt`
+   - **Start Command** : `cd aurora_ai && python api.py`
    - **Plan** : Starter ($7/mois)
 
 4. **Variables d'environnement** :
@@ -79,7 +79,7 @@ export const config = {
 
 #### Configurer CORS dans l'API
 
-Dans `flo_ai/api.py`, mettez à jour CORS :
+Dans `aurora_ai/api.py`, mettez à jour CORS :
 
 ```python
 app.add_middleware(

@@ -1,7 +1,7 @@
 {
-  "name": "flo-ai-studio",
+  "name": "aurora-ai-studio",
   "version": "1.0.0",
-  "description": "Visual designer for Flo AI workflows",
+  "description": "Visual designer for Aurora AI workflows",
   "private": true,
   "scripts": {
     "dev": "vite",

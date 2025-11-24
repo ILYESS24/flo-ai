@@ -28,14 +28,14 @@ The system supports:
 
 ## Basic Tools
 
-### Creating Tools with @flo_tool Decorator
+### Creating Tools with @aurora_tool Decorator
 
-The `@flo_tool` decorator is the easiest way to create tools:
+The `@aurora_tool` decorator is the easiest way to create tools:
 
 ```python
-from flo_ai.tool.flo_tool import flo_tool
+from aurora_ai.tool.aurora_tool import aurora_tool
 
-@flo_tool(
+@aurora_tool(
     description="Calculate mathematical expressions",
     parameter_descriptions={
         "expression": "Mathematical expression to evaluate",
@@ -65,8 +65,8 @@ Every tool has these properties:
 ### Using Tools in Agents
 
 ```python
-from flo_ai.builder.agent_builder import AgentBuilder
-from flo_ai.llm import OpenAI
+from aurora_ai.builder.agent_builder import AgentBuilder
+from aurora_ai.llm import OpenAI
 
 agent = (AgentBuilder()
     .with_name("Math Assistant")
@@ -95,10 +95,10 @@ Partial tools allow you to pre-fill some parameters during agent building, hidin
 #### Method 1: Using AgentBuilder.add_tool()
 
 ```python
-from flo_ai.builder.agent_builder import AgentBuilder
+from aurora_ai.builder.agent_builder import AgentBuilder
 
 # BigQuery tool with multiple parameters
-@flo_tool(description="Query BigQuery database")
+@aurora_tool(description="Query BigQuery database")
 async def bigquery_query(
     query: str,
     datasource_id: str,
@@ -148,7 +148,7 @@ agent = (AgentBuilder()
 #### Method 3: Using ToolConfig Class
 
 ```python
-from flo_ai.tool.tool_config import ToolConfig, create_tool_config
+from aurora_ai.tool.tool_config import ToolConfig, create_tool_config
 
 # Create partial tool configuration
 partial_tool = create_tool_config(
@@ -193,7 +193,7 @@ partial_tool.parameters
 The `ToolConfig` class provides a flexible way to configure tools:
 
 ```python
-from flo_ai.tool.tool_config import ToolConfig
+from aurora_ai.tool.tool_config import ToolConfig
 
 tool_config = ToolConfig(
     tool=my_tool,
@@ -304,7 +304,7 @@ agent:
 ### Using YAML Configuration
 
 ```python
-from flo_ai.builder.agent_builder import AgentBuilder
+from aurora_ai.builder.agent_builder import AgentBuilder
 
 # Create tool registry
 tool_registry = {
@@ -330,12 +330,12 @@ agent = AgentBuilder.from_yaml(
 
 ```python
 import asyncio
-from flo_ai.tool.flo_tool import flo_tool
-from flo_ai.builder.agent_builder import AgentBuilder
-from flo_ai.llm import OpenAI
+from aurora_ai.tool.aurora_tool import aurora_tool
+from aurora_ai.builder.agent_builder import AgentBuilder
+from aurora_ai.llm import OpenAI
 
 # Define tools
-@flo_tool(description="Query BigQuery database")
+@aurora_tool(description="Query BigQuery database")
 async def bigquery_query(
     query: str,
     datasource_id: str,
@@ -344,11 +344,11 @@ async def bigquery_query(
 ) -> str:
     return f"Executed: {query} on {project_id}.{dataset}"
 
-@flo_tool(description="Search the web")
+@aurora_tool(description="Search the web")
 async def web_search(query: str, max_results: int = 10) -> str:
     return f"Found {max_results} results for: {query}"
 
-@flo_tool(description="Calculate mathematical expressions")
+@aurora_tool(description="Calculate mathematical expressions")
 async def calculate(expression: str) -> str:
     try:
         result = eval(expression)
@@ -434,10 +434,10 @@ agent = AgentBuilder.from_yaml(
 
 ## API Reference
 
-### @flo_tool Decorator
+### @aurora_tool Decorator
 
 ```python
-@flo_tool(
+@aurora_tool(
     name: Optional[str] = None,
     description: Optional[str] = None,
     parameter_descriptions: Optional[Dict[str, str]] = None
@@ -534,7 +534,7 @@ def from_yaml(
 ### 4. Error Handling
 
 ```python
-@flo_tool(description="Query database")
+@aurora_tool(description="Query database")
 async def query_database(query: str, connection_string: str) -> str:
     try:
         # Database query logic

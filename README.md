@@ -1,21 +1,17 @@
-<p align="center">
-  <img src="./images/rootflo-logo.png" alt="Rootflo" width="150" />
-</p>
-
-<h1 align="center">Flo AI 🌊</h1>
+# Aurora AI 🌟
 
 <p align="center">
   <strong>Build production-ready AI agents with structured outputs, tool integration, and multi-LLM support</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/rootflo/flo-ai/stargazers"><img src="https://img.shields.io/github/stars/rootflo/flo-ai?style=for-the-badge" alt="GitHub stars"></a>
-  <a href="https://github.com/rootflo/flo-ai/releases">
-    <img src="https://img.shields.io/github/v/release/rootflo/flo-ai?display_name=release&style=for-the-badge" alt="GitHub release (latest)">
+  <a href="https://github.com/ILYESS24/aurora-ai/stargazers"><img src="https://img.shields.io/github/stars/ILYESS24/aurora-ai?style=for-the-badge" alt="GitHub stars"></a>
+  <a href="https://github.com/ILYESS24/aurora-ai/releases">
+    <img src="https://img.shields.io/github/v/release/ILYESS24/aurora-ai?display_name=release&style=for-the-badge" alt="GitHub release (latest)">
   </a>
-  <a href="https://github.com/rootflo/flo-ai/graphs/commit-activity"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/rootflo/flo-ai/develop?style=for-the-badge">
+  <a href="https://github.com/ILYESS24/aurora-ai/graphs/commit-activity"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/ILYESS24/aurora-ai/develop?style=for-the-badge">
   </a>
-  <a href="https://github.com/rootflo/flo-ai/blob/develop/LICENSE"><img src="https://img.shields.io/github/license/rootflo/flo-ai?style=for-the-badge" alt="License">
+  <a href="https://github.com/ILYESS24/aurora-ai/blob/develop/LICENSE"><img src="https://img.shields.io/github/license/ILYESS24/aurora-ai?style=for-the-badge" alt="License">
   </a>
   <a href="#"><img src="https://img.shields.io/badge/tests-passing-brightgreen?style=for-the-badge" alt="Tests Passing">
   </a>
@@ -24,18 +20,16 @@
 
 <p align="center">
   <br/>
-   <a href="https://github.com/rootflo/flo-ai">GitHub</a>
+   <a href="https://github.com/ILYESS24/aurora-ai">GitHub</a>
    •
-    <a href="https://rootflo.ai" target="_blank">Website</a>
-   •
-    <a href="https://flo-ai.rootflo.ai" target="_blank">Documentation</a>
+    <a href="https://aurora-ai.rootflo.ai" target="_blank">Documentation</a>
   </p>
 
   <hr />
 
-## 🚀 What is Flo AI?
+## 🚀 What is Aurora AI?
 
-Flo AI is a Python framework that makes building production-ready AI agents and teams as easy as writing YAML. Think "Kubernetes for AI Agents" - compose complex AI architectures using pre-built components while maintaining the flexibility to create your own.
+Aurora AI is a Python framework that makes building production-ready AI agents and teams as easy as writing YAML. Think "Kubernetes for AI Agents" - compose complex AI architectures using pre-built components while maintaining the flexibility to create your own.
 
 ### ✨ Key Features
 
@@ -54,15 +48,15 @@ Flo AI is a Python framework that makes building production-ready AI agents and 
   - [Your First Agent (30 seconds)](#your-first-agent-30-seconds)
   - [Tool-Using Agent](#tool-using-agent)
   - [Structured Output Agent](#structured-output-agent)
-- [🎨 Flo AI Studio - Visual Workflow Designer](#-flo-ai-studio---visual-workflow-designer)
+- [🎨 Aurora AI Studio - Visual Workflow Designer](#-aurora-ai-studio---visual-workflow-designer)
 - [🔧 Core Features](#-core-features)
   - [LLM Providers](#llm-providers)
-  - [Tools & @flo_tool Decorator](#tools--flo_tool-decorator)
+  - [Tools & @aurora_tool Decorator](#tools--aurora_tool-decorator)
   - [Variables System](#variables-system)
   - [Document Processing](#document-processing)
   - [Output Formatting](#output-formatting)
   - [Error Handling](#error-handling)
-- [🔄 Agent Orchestration with Arium](#-agent-orchestration-with-arium)
+- [🔄 Agent Orchestration with Aurora](#-agent-orchestration-with-aurora)
   - [Simple Agent Chains](#simple-agent-chains)
   - [Conditional Routing](#conditional-routing)
   - [YAML-Based Workflows](#yaml-based-workflows)
@@ -70,7 +64,7 @@ Flo AI is a Python framework that makes building production-ready AI agents and 
   - [ReflectionRouter & PlanExecuteRouter](#reflectionrouter--planexecuterouter)
 - [📊 OpenTelemetry Integration](#-opentelemetry-integration)
 - [📚 Examples & Documentation](#-examples--documentation)
-- [🌟 Why Flo AI?](#-why-flo-ai)
+- [🌟 Why Aurora AI?](#-why-aurora-ai)
 - [🤝 Contributing](#-contributing)
 
 ## 🚀 Quick Start
@@ -78,19 +72,19 @@ Flo AI is a Python framework that makes building production-ready AI agents and 
 ### Installation
 
 ```bash
-pip install flo-ai
+pip install aurora-ai
 # or using poetry
-poetry add flo-ai
+poetry add aurora-ai
 # or using uv
-uv add flo-ai
+uv add aurora-ai
 ```
 
 ### Your First Agent (30 seconds)
 
 ```python
 import asyncio
-from flo_ai.builder.agent_builder import AgentBuilder
-from flo_ai.llm import OpenAI
+from aurora.builder.agent_builder import AgentBuilder
+from aurora.llm import OpenAI
 
 async def main():
     # Create a simple conversational agent
@@ -112,11 +106,11 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from flo_ai.builder.agent_builder import AgentBuilder
-from flo_ai.tool import flo_tool
-from flo_ai.llm import Anthropic
+from aurora.builder.agent_builder import AgentBuilder
+from aurora.tool import aurora_tool
+from aurora.llm import Anthropic
 
-@flo_tool(description="Perform mathematical calculations")
+@aurora_tool(description="Perform mathematical calculations")
 async def calculate(operation: str, x: float, y: float) -> float:
     """Calculate mathematical operations between two numbers."""
     operations = {
@@ -148,8 +142,8 @@ asyncio.run(main())
 ```python
 import asyncio
 from pydantic import BaseModel, Field
-from flo_ai.builder.agent_builder import AgentBuilder
-from flo_ai.llm import OpenAI
+from aurora.builder.agent_builder import AgentBuilder
+from aurora.llm import OpenAI
 
 class MathSolution(BaseModel):
     solution: str = Field(description="Step-by-step solution")
@@ -158,7 +152,7 @@ class MathSolution(BaseModel):
 
 async def main():
     agent = (
-    AgentBuilder()
+        AgentBuilder()
         .with_name('Math Solver')
     .with_llm(OpenAI(model='gpt-4o'))
         .with_output_schema(MathSolution)
@@ -171,22 +165,22 @@ async def main():
 asyncio.run(main())
 ```
 
-## 🎨 Flo AI Studio - Visual Workflow Designer
+## 🎨 Aurora AI Studio - Visual Workflow Designer
 
 **Create AI workflows visually with our powerful React-based studio!**
 
 <p align="center">
-  <img src="./images/flo-studio-preview.png" alt="Flo AI Studio - Visual Workflow Designer" width="800" />
+  <img src="./images/aurora-studio-preview.png" alt="Aurora AI Studio - Visual Workflow Designer" width="800" />
 </p>
 
-Flo AI Studio is a modern, intuitive visual editor that allows you to design complex multi-agent workflows through a drag-and-drop interface. Build sophisticated AI systems without writing code, then export them as production-ready YAML configurations.
+Aurora AI Studio is a modern, intuitive visual editor that allows you to design complex multi-agent workflows through a drag-and-drop interface. Build sophisticated AI systems without writing code, then export them as production-ready YAML configurations.
 
 ### 🚀 Studio Features
 
 - **🎯 Visual Design**: Drag-and-drop interface for creating agent workflows
 - **🤖 Agent Management**: Configure AI agents with different roles, models, and tools
 - **🔀 Smart Routing**: Visual router configuration for intelligent workflow decisions
-- **📤 YAML Export**: Export workflows as Flo AI-compatible YAML configurations
+- **📤 YAML Export**: Export workflows as Aurora AI-compatible YAML configurations
 - **📥 YAML Import**: Import existing workflows for further editing
 - **✅ Workflow Validation**: Real-time validation and error checking
 - **🔧 Tool Integration**: Connect agents to external tools and APIs
@@ -211,9 +205,9 @@ Flo AI Studio is a modern, intuitive visual editor that allows you to design com
 3. **Export & Run**:
 
 ```python
-from flo_ai.arium import AriumBuilder
+from aurora.aurora import AuroraBuilder
 
-   builder = AriumBuilder.from_yaml(yaml_file='your_workflow.yaml')
+   builder = AuroraBuilder.from_yaml(yaml_file='your_workflow.yaml')
    result = await builder.build_and_run(['Your input here'])
 ```
 
@@ -221,38 +215,38 @@ from flo_ai.arium import AriumBuilder
 
 ### LLM Providers
 
-Flo AI supports multiple LLM providers with consistent interfaces:
+Aurora AI supports multiple LLM providers with consistent interfaces:
 
 ```python
 # OpenAI
-from flo_ai.llm import OpenAI
+from aurora.llm import OpenAI
 llm = OpenAI(model='gpt-4o', temperature=0.7)
 
 # Anthropic Claude
-from flo_ai.llm import Anthropic
+from aurora.llm import Anthropic
 llm = Anthropic(model='claude-3-5-sonnet-20240620', temperature=0.7)
 
 # Google Gemini
-from flo_ai.llm import Gemini
+from aurora.llm import Gemini
 llm = Gemini(model='gemini-2.5-flash', temperature=0.7)
 
 # Google VertexAI
-from flo_ai.llm import VertexAI
+from aurora.llm import VertexAI
 llm = VertexAI(model='gemini-2.5-flash', project='your-project')
 
 # Ollama (Local)
-from flo_ai.llm import Ollama
+from aurora.llm import Ollama
 llm = Ollama(model='llama2', base_url='http://localhost:11434')
 ```
 
-### Tools & @flo_tool Decorator
+### Tools & @aurora_tool Decorator
 
-Create custom tools easily with the `@flo_tool` decorator:
+Create custom tools easily with the `@aurora_tool` decorator:
 
 ```python
-from flo_ai.tool import flo_tool
+from aurora.tool import aurora_tool
 
-@flo_tool(description="Get current weather for a city")
+@aurora_tool(description="Get current weather for a city")
 async def get_weather(city: str, country: str = None) -> str:
     """Get weather information for a specific city."""
     # Your weather API implementation
@@ -300,7 +294,7 @@ result = await agent.run(
 Process PDF and TXT documents with AI agents:
 
 ```python
-from flo_ai.models.document import DocumentMessage, DocumentType
+from aurora.models.document import DocumentMessage, DocumentType
 
     # Create document message
     document = DocumentMessage(
@@ -355,16 +349,16 @@ agent = (
 )
 ```
 
-## 🔄 Agent Orchestration with Arium
+## 🔄 Agent Orchestration with Aurora
 
-Arium is Flo AI's powerful workflow orchestration engine for creating complex multi-agent workflows.
+Aurora is Aurora AI's powerful workflow orchestration engine for creating complex multi-agent workflows.
 
 ### Simple Agent Chains
 
 ```python
-from flo_ai.arium import AriumBuilder
-from flo_ai.models.agent import Agent
-from flo_ai.llm import OpenAI
+from aurora.aurora import AuroraBuilder
+from aurora.models.agent import Agent
+from aurora.llm import OpenAI
 
 async def simple_chain():
     llm = OpenAI(model='gpt-4o-mini')
@@ -384,7 +378,7 @@ async def simple_chain():
 
     # Build and run workflow
     result = await (
-        AriumBuilder()
+        AuroraBuilder()
         .add_agents([analyst, summarizer])
         .start_with(analyst)
         .connect(analyst, summarizer)
@@ -398,7 +392,7 @@ async def simple_chain():
 ### Conditional Routing
 
 ```python
-from flo_ai.arium.memory import BaseMemory
+from aurora.aurora.memory import BaseMemory
 
     def route_by_type(memory: BaseMemory) -> str:
         """Route based on classification result"""
@@ -412,7 +406,7 @@ from flo_ai.arium.memory import BaseMemory
 
     # Build workflow with conditional routing
 result = await (
-        AriumBuilder()
+        AuroraBuilder()
         .add_agents([classifier, tech_specialist, business_specialist, final_agent])
         .start_with(classifier)
         .add_edge(classifier, [tech_specialist, business_specialist], route_by_type)
@@ -433,7 +427,7 @@ metadata:
   version: "1.0.0"
   description: "Multi-agent content analysis pipeline"
 
-arium:
+aurora:
   agents:
     - name: "analyzer"
       role: "Content Analyst"
@@ -460,7 +454,7 @@ arium:
 ```python
 # Run YAML workflow
 result = await (
-        AriumBuilder()
+        AuroraBuilder()
     .from_yaml(yaml_str=workflow_yaml)
         .build_and_run(["Analyze this quarterly business report..."])
     )
@@ -519,7 +513,7 @@ routers:
 Built-in observability for production monitoring:
 
 ```python
-from flo_ai import configure_telemetry, shutdown_telemetry
+from aurora import configure_telemetry, shutdown_telemetry
 
 # Configure at startup
 configure_telemetry(
@@ -534,7 +528,7 @@ configure_telemetry(
 shutdown_telemetry()
 ```
 
-**📖 [Complete Telemetry Guide →](flo_ai/flo_ai/telemetry/README.md)**
+**📖 [Complete Telemetry Guide →](aurora_ai/aurora/telemetry/README.md)**
 
 ## 📚 Examples & Documentation
 
@@ -554,11 +548,11 @@ Visit our [website](https://www.rootflo.ai) to know more
 
 **Additional Resources:**
 
-- [@flo_tool Decorator Guide](TOOLS.md) - Complete guide to the `@flo_tool` decorator
-- [Examples Directory](flo_ai/examples/) - Ready-to-run code examples
-- [Contributing Guide](CONTRIBUTING.md) - How to contribute to Flo AI
+- [@aurora_tool Decorator Guide](TOOLS.md) - Complete guide to the `@aurora_tool` decorator
+- [Examples Directory](aurora/examples/) - Ready-to-run code examples
+- [Contributing Guide](CONTRIBUTING.md) - How to contribute to Aurora AI
 
-## 🌟 Why Flo AI?
+## 🌟 Why Aurora AI?
 
 ### For Developers
 
@@ -593,12 +587,12 @@ We love your input! Check out our [Contributing Guide](CONTRIBUTING.md) to get s
 
 ## 📜 License
 
-Flo AI is [MIT Licensed](LICENSE).
+Aurora AI is [MIT Licensed](LICENSE).
 
 ---
 
 <div align="center">
   <strong>Built with ❤️ by the <a href="http://rootflo.ai">rootflo</a> team</strong>
-  <br><a href="https://github.com/rootflo/flo-ai/discussions">Community</a> •
-  <a href="https://flo-ai.rootflo.ai">Documentation</a>
+  <br><a href="https://github.com/ILYESS24/aurora-ai/discussions">Community</a> •
+  <a href="https://aurora-ai.rootflo.ai">Documentation</a>
 </div>

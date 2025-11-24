@@ -25,7 +25,7 @@
             "group": "Core Features",
             "pages": [
               "essentials/agents",
-              "essentials/arium",
+              "essentials/aurora",
               "essentials/studio",
               "essentials/yaml-agents",
               "essentials/code"
@@ -67,7 +67,7 @@
     "links": [
       {
         "label": "Examples",
-        "href": "https://github.com/rootflo/flo-ai/tree/main/flo_ai/examples"
+        "href": "https://github.com/rootflo/flo-ai/tree/main/aurora_ai/examples"
       }
     ],
     "primary": {

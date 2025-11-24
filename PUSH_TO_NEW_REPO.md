@@ -178,12 +178,12 @@ git push -u origin main
 
 Le nouveau repository contiendra :
 
-### Framework Python (`flo_ai/`)
+### Framework Python (`aurora_ai/`)
 - ✅ Framework complet d'agents IA
 - ✅ Support multi-LLM (OpenAI, Anthropic, Google)
 - ✅ API FastAPI pour déploiement
-- ✅ Orchestration multi-agents (Arium)
-- ✅ Système d'outils (@flo_tool)
+- ✅ Orchestration multi-agents (aurora)
+- ✅ Système d'outils (@aurora_tool)
 - ✅ Intégration OpenTelemetry
 
 ### Studio Visuel (`studio/`)

@@ -52,11 +52,11 @@ Après création, Render fournit automatiquement :
 - **Runtime** : `Python 3`
 - **Build Command** :
   ```bash
-  pip install -r flo_ai/requirements.txt
+  pip install -r aurora_ai/requirements.txt
   ```
 - **Start Command** :
   ```bash
-  cd flo_ai && python api.py
+  cd aurora_ai && python api.py
   ```
 
 #### 🌍 Variables d'environnement :
@@ -70,7 +70,7 @@ ANTHROPIC_API_KEY=sk-ant-your-anthropic-key-here
 GOOGLE_API_KEY=your-google-ai-key-here
 
 # Database (fourni automatiquement par Render)
-DATABASE_URL=postgresql://flo_ai_db_user:password@host:5432/flo_ai_db
+DATABASE_URL=postgresql://aurora_ai_db_user:password@host:5432/aurora_ai_db
 
 # Configuration optionnelle
 PORT=8000
@@ -137,7 +137,7 @@ ANTHROPIC_API_KEY=sk-ant-api03-your-actual-anthropic-key-here
 GOOGLE_API_KEY=AIzaSy-your-actual-google-key-here
 
 # === FOURNI PAR RENDER ===
-DATABASE_URL=postgresql://flo_ai_db_xxx:yyy@dpg-zzz.render.com/flo_ai_db
+DATABASE_URL=postgresql://aurora_ai_db_xxx:yyy@dpg-zzz.render.com/aurora_ai_db
 
 # === CONFIGURATION PYTHON ===
 PYTHON_VERSION=3.11
@@ -217,7 +217,7 @@ Après déploiement réussi :
 
 - **Studio Visuel** : `https://flo-ai-studio.onrender.com`
 - **API Backend** : `https://flo-ai-api.onrender.com`
-- **Base de données** : `postgresql://flo_ai_db_xxx:yyy@dpg-zzz.render.com/flo_ai_db`
+- **Base de données** : `postgresql://aurora_ai_db_xxx:yyy@dpg-zzz.render.com/aurora_ai_db`
 
 ## 🔧 7. Commandes de Maintenance
 
@@ -266,7 +266,7 @@ render env set OPENAI_API_KEY=your-key flo-ai-api
 
 #### ❌ Studio ne se connecte pas à l'API
 - Vérifier que `API_URL` pointe vers la bonne URL de l'API
-- Vérifier CORS dans l'API (`flo_ai/api.py`)
+- Vérifier CORS dans l'API (`aurora_ai/api.py`)
 
 #### ❌ Erreur de base de données
 - Vérifier que `DATABASE_URL` est correctement défini
@@ -324,8 +324,8 @@ render postgres create flo-ai-db --plan free --region oregon --version 16
 render web create flo-ai-api \
   --repo https://github.com/ILYESS24/flocursor \
   --runtime python3 \
-  --build-command "pip install -r flo_ai/requirements.txt" \
-  --start-command "cd flo_ai && python api.py" \
+  --build-command "pip install -r aurora_ai/requirements.txt" \
+  --start-command "cd aurora_ai && python api.py" \
   --env-vars "PYTHON_VERSION=3.11,OPENAI_API_KEY=your_key_here" \
   --plan starter
 
