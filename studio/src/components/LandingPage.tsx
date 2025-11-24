@@ -39,9 +39,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
             y: 200
           },
           data: {
-            label: agent.name,
-            description: agent.description,
-            type: 'agent',
             agent: {
               id: nodeId,
               name: agent.name,
