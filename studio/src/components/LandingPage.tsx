@@ -22,21 +22,31 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartDesigning }) => {
     if (!prompt.trim()) return;
 
     const run = async () => {
+      let shouldOpenStudio = false;
       try {
         setIsLoading(true);
         const response = await floAIAPI.generateStudioWorkflow({ prompt });
 
         if (response.status === 'success' && (response.data as any)?.yaml) {
           const yamlContent = (response.data as any).yaml as string;
-          await importFromYAML(yamlContent);
-          onStartDesigning();
+          try {
+            await importFromYAML(yamlContent);
+          } catch (yamlError) {
+            console.error('Failed to import generated YAML workflow:', yamlError);
+          }
+          shouldOpenStudio = true;
         } else {
           console.error('Failed to generate workflow from AI:', response.error || response.data);
+          // Ouvre quand même le studio pour ne pas bloquer l'utilisateur
+          shouldOpenStudio = true;
         }
       } catch (error) {
         console.error('AI workflow generation failed:', error);
       } finally {
         setIsLoading(false);
+        if (shouldOpenStudio) {
+          onStartDesigning();
+        }
       }
     };
 
