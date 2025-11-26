@@ -1,7 +1,11 @@
 // Configuration pour Aurora AI Studio
+// ⚠️ Vite expose les variables d'env côté front via `import.meta.env`
+const API_BASE_URL =
+  (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000';
+
 export const config = {
   // URL de l'API backend
-  API_BASE_URL: process.env.VITE_API_URL || process.env.API_URL || 'http://localhost:8000',
+  API_BASE_URL,
 
   // Configuration des providers LLM
   LLM_PROVIDERS: {
